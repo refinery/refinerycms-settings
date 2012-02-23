@@ -1,8 +1,8 @@
-require 'refinerycms-core'
+require 'refinerycms-coreg'
 
 module Refinery
   module Settings
-    require 'refinery/settings/engine' if defined?(Rails)
+    require 'refinery/settings/engine'
 
     class << self
       attr_writer :root

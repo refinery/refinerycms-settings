@@ -1,5 +1,3 @@
-require 'rails'
-
 module Refinery
   module Settings
     class Engine < ::Rails::Engine
