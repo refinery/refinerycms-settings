@@ -21,13 +21,18 @@ module Refinery
       end
 
       context "new/create" do
-        it "adds setting" do
+        it "adds setting", :js => true do
           visit refinery.admin_settings_path
           click_link "Add new setting"
 
-          fill_in "Name", :with => "test setting"
-          fill_in "Value", :with => "true"
-          click_button "Save"
+          page.should have_selector('iframe#dialog_iframe')
+
+          page.within_frame('dialog_iframe') do
+            fill_in "Name", :with => "test setting"
+            fill_in "Value", :with => "true"
+
+            click_button "Save"
+          end
 
           page.should have_content("'Test Setting' was successfully added.")
           page.should have_content("Test Setting - true")

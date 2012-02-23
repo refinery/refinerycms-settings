@@ -3,19 +3,19 @@
     <%= t('results_for', :scope => 'refinery.admin.search', :query => params[:search]) %>
   </h2>
 <% end %>
-<% if @settings.any? %>
-  <div class='pagination_container'>
+<div class='pagination_container'>
+  <% if @settings.any? %>
     <%= render 'settings' %>
-  </div>
-<% else %>
-  <p>
-    <% if searching? %>
-      <%= t('no_results', :scope => 'refinery.admin.search') %>
-    <% else %>
-      <strong>
-        <%= t('.empty_set') %>
-        <%= t('.create_first', :link => t('new', :scope => 'refinery.admin.settings.actions')) %>
-      </strong>
-    <% end %>
-  </p>
-<% end %>
+  <% else %>
+    <p>
+      <% if searching? %>
+        <%= t('no_results', :scope => 'refinery.admin.search') %>
+      <% else %>
+        <strong>
+          <%= t('.empty_set') %>
+          <%= t('.create_first', :link => t('new', :scope => 'refinery.admin.settings.actions')) %>
+        </strong>
+      <% end %>
+    </p>
+  <% end %>
+</div>

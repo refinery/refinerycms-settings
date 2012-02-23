@@ -9,14 +9,12 @@ module Refinery
     validates :name, :presence => true
 
     serialize :value # stores into YAML format
-    serialize :callback_proc_as_string
 
     # Docs for acts_as_indexed http://github.com/dougal/acts_as_indexed
     acts_as_indexed :fields => [:name]
 
     attr_accessible :name, :value, :destroyable,
-                    :scoping, :restricted, :callback_proc_as_string,
-                    :form_value_type
+                    :scoping, :restricted, :form_value_type
 
     has_friendly_id :name, :use_slug => true
 
@@ -90,8 +88,9 @@ module Refinery
       def find_or_set(name, the_value, options={})
         # Merge default options with supplied options.
         options = {
-          :scoping => nil, :restricted => false,
-          :callback_proc_as_string => nil, :form_value_type => 'text_area'
+          :scoping => nil,
+          :restricted => false,
+          :form_value_type => 'text_area'
         }.merge(options)
 
         # try to find the setting first
@@ -127,7 +126,6 @@ module Refinery
           # set the value last, so that the other attributes can transform it if required.
           setting.form_value_type = value[:form_value_type] || 'text_area' if setting.respond_to?(:form_value_type)
           setting.scoping = value[:scoping] if value.has_key?(:scoping)
-          setting.callback_proc_as_string = value[:callback_proc_as_string] if value.has_key?(:callback_proc_as_string)
           setting.destroyable = value[:destroyable] if value.has_key?(:destroyable)
           setting.value = value[:value]
         end
@@ -173,10 +171,6 @@ module Refinery
       end
 
       super
-    end
-
-    def callback_proc
-      eval("Proc.new{#{callback_proc_as_string} }") if callback_proc_as_string.present?
     end
 
     private
