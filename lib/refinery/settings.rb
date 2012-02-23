@@ -1,4 +1,4 @@
-require 'refinerycms-coreg'
+require 'refinerycms-core'
 
 module Refinery
   module Settings
