@@ -1,5 +1,7 @@
 module Refinery
   class Setting < Refinery::Core::BaseModel
+    extend FriendlyId
+    friendly_id :name
 
     FORM_VALUE_TYPES = [
       ['Multi-line', 'text_area'],
@@ -15,8 +17,6 @@ module Refinery
 
     attr_accessible :name, :value, :destroyable,
                     :scoping, :restricted, :form_value_type
-
-    has_friendly_id :name, :use_slug => true
 
     before_save do |setting|
       setting.restricted = false if setting.restricted.nil?
