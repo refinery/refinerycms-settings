@@ -14,12 +14,12 @@ and now it can be used separately.
 Settings can be really useful, especially when you have custom display logic or
 new plugins that need to behave in different ways.
 
-To best explain how settings work let's use an example. Say you have a client
+To best explain how settings, work let's use an example. Say you have a client
 who has a display in a local trade show every year and 2 months before the trade
-show they want to display a little banner in the header of all pages.
+show, they want to display a little banner in the header of all pages.
 
 But once the trade show is finished, the client needs to be able to hide it again
-until next year. This is what my ``application.html.erb`` file might look like:
+until next year. This is what your ``application.html.erb`` file might look like:
 
     ...
     <div id='header'>
@@ -32,10 +32,10 @@ until next year. This is what my ``application.html.erb`` file might look like:
     ...
 
 The following will automatically create a new Refinery setting called
-"show_trade_show_banner" and default it to ``false``.
+"show_trade_show_banner" and set its default it to ``false``.
 If that setting already exists, it just reads in what the current value is.
 
-So as you can see this is quite clever because you can quickly define new settings
+So as you can see, this is quite clever because you can quickly define new settings
  and their defaults right from the view as you need them.
 
 This setting would then show up in the backend in the 'Settings' area where the
