@@ -1,7 +1,7 @@
 require 'refinerycms-core'
 
 module Refinery
-  autoload :SettingsGenerator, 'generators/refinery/settings/settings_generator'
+  autoload :SettingsGenerator, 'generators/refinery/settings_generator'
 
   module Settings
 
