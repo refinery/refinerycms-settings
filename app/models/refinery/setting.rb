@@ -25,6 +25,10 @@ module Refinery
     after_save do |setting|
       setting.class.rewrite_cache
     end
+    
+    after_destroy do |setting|
+      setting.class.rewrite_cache
+    end
 
     class << self
       # Number of settings to show per page when using will_paginate
