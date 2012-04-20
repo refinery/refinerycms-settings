@@ -20,12 +20,15 @@ module Refinery
 
     before_save do |setting|
       setting.restricted = false if setting.restricted.nil?
+      if setting.value.present? && setting.value.is_a?(String)
+        setting.value = YAML.parse(setting.value).to_ruby
+      end
     end
 
     after_save do |setting|
       setting.class.rewrite_cache
     end
-    
+
     after_destroy do |setting|
       setting.class.rewrite_cache
     end
