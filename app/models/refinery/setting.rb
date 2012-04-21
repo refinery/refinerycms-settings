@@ -20,7 +20,7 @@ module Refinery
 
     before_save do |setting|
       setting.restricted = false if setting.restricted.nil?
-      setting.value = YAML.parse(setting.value).to_ruby
+      setting.value = YAML.parse(setting.value).to_ruby if setting.value.is_a? String
     end
 
     after_save do |setting|
