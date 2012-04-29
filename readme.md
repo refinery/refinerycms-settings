@@ -14,7 +14,7 @@ Add the gem to you Gemfile:
 
 Generate and install the necessary migrations:
 
-    rake refinery_settings:install:migrations
+    rails generate refinery:settings
     rake db:migrate
     
 
