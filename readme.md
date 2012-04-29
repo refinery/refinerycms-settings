@@ -7,6 +7,17 @@
 Refinery Settings was extracted from Refinery CMS just before 2.0.0 was released
 and can now be used separately.
 
+## Installation
+Add the gem to you Gemfile:
+
+    gem 'refinerycms-settings'
+
+Generate and install the necessary migrations:
+
+    rails generate refinery:settings
+    rake db:migrate
+    
+
 ## How do I Make my Own Settings?
 
 ### In view
