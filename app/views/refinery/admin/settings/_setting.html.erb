@@ -11,7 +11,7 @@
                 refinery.admin_setting_path(setting),
                 :class => 'cancel confirm-delete',
                 :title => t('delete', :scope => 'refinery.admin.settings'),
-                :confirm => t('message', :scope => 'refinery.admin.delete', :title => setting.title),
+                :data => { :confirm => t('message', :scope => 'refinery.admin.delete', :title => setting.title) },
                 :method => :delete if setting.destroyable %>
 
     <% unless (help = t(setting.name, :scope => 'refinery.admin.settings.form.help', :default => '')).blank? %>
