@@ -1,4 +1,5 @@
 require 'refinerycms-core'
+require 'acts_as_indexed'
 
 module Refinery
   autoload :SettingsGenerator, 'generators/refinery/settings_generator'
