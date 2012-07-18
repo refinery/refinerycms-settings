@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = %q{refinerycms-settings}
-  s.version           = %q{2.0.1}
+  s.version           = %q{2.0.2}
   s.summary           = %q{Settings engine for Refinery CMS}
   s.description       = %q{Adds programmer creatable, user editable settings.}
   s.email             = %q{info@refinerycms.com}
