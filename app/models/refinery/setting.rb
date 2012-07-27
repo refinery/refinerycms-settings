@@ -100,7 +100,11 @@ module Refinery
         # try to find the setting first
         value = get(name, :scoping => options[:scoping])
 
-        # if the setting's value is nil, store a new one using the existing functionality.
+        # return nil without hitting db in case the_value and value is nil
+        return nil if the_value.nil? && value.nil?
+
+        # if value is nil and the_value isn't, store a new setting using the
+        # existing functionality
         value = set(name, options.merge({:value => the_value})) if value.nil?
 
         # Return what we found.
