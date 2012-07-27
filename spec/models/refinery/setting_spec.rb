@@ -97,6 +97,11 @@ module Refinery
       it "should work without scoping" do
         ::Refinery::Setting.find_or_set(:rspec_testing_creating_from_scratch, 'Yes it worked').should eq('Yes it worked')
       end
+
+      it "returns nil without resaving setting" do
+        Refinery::Setting.should_not_receive(:save)
+        Refinery::Setting.find_or_set(:creating_from_scratch, nil).should eq(nil)
+      end
     end
 
   end
