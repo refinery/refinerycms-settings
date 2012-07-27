@@ -3,7 +3,7 @@ require "spec_helper"
 module Refinery
   module Admin
     describe "Settings" do
-      login_refinery_user
+      refinery_login_with :refinery_user
 
       context "when no settings" do
         before(:each) { Refinery::Setting.destroy_all }
