@@ -12,7 +12,6 @@ module Refinery
         Refinery::Plugin.register do |plugin|
           plugin.pathname = root
           plugin.name = 'refinery_settings'
-          plugin.version = %q{2.0.0}
           plugin.menu_match = %r{refinery/settings$}
           plugin.url = proc { Refinery::Core::Engine.routes.url_helpers.admin_settings_path }
         end
