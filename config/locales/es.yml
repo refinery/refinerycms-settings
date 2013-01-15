@@ -18,14 +18,6 @@ es:
           enabled: "Si, habilita esta funcionalidad"
           restart_may_be_in_order_html: <strong>Recuerda</strong> que puede que necesites reiniciar tu web para que esta opción haga efecto.
           yes_make_this_setting_restricted: "Sí, restringir esta opción sólo para superusuarios."
-          title:
-            frontend_refinery_stylesheets_enabled: Hojas de estilo de refinery en el frontend
-            i18n_translation_current_locale: Idioma actual (Refinery)
-            i18n_translation_default_frontend_locale: Idioma por defecto en el frontend (Refinery)
-            i18n_translation_default_locale: Idioma por defecto (Refinery)
-            i18n_translation_enabled: Traducción activada (Refinery)
-            i18n_translation_frontend_locales: Idiomas disponibles en el frontend (Refinery)
-            i18n_translation_locales: Idiomas disponibles (Refinery)
           help:
             restricted: Hace que sólo los superusuarios (como tu) puedan ver y editar esta opción.
   activerecord:
