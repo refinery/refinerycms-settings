@@ -7,6 +7,7 @@ module Refinery
   module Settings
 
     require 'refinery/settings/engine'
+    require 'refinery/settings/configuration'
 
     class << self
       attr_writer :root
