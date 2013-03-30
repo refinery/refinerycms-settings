@@ -1,6 +1,7 @@
 module ::Refinery
   module Admin
     class SettingsController < ::Refinery::AdminController
+      before_filter :interface_enabled?
 
       helper "refinery/admin/settings"
 
@@ -39,6 +40,10 @@ module ::Refinery
 
         # First find normal results, then weight them with the query.
          @settings = find_all_settings.with_query(term)
+      end
+
+      def interface_enabled?
+        redirect_to refinery.admin_root_path unless Refinery::Settings.enable_interface
       end
 
     private
