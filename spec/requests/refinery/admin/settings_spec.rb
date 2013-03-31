@@ -18,10 +18,6 @@ module Refinery
           end
         end
 
-        it "should be accessible" do
-          expect(:get => "/refinery/settings").to be_routable
-        end
-
         context "when no settings" do
           before(:each) { Refinery::Setting.destroy_all }
 
@@ -74,7 +70,7 @@ module Refinery
       context "when interface config is disabled" do
         before do
           Refinery::Settings.stub(:enable_interface).and_return(false)
-          Refinery::Plugins.registered.find_by_name("refinery_settings").hide_from_menu.stub(:enable_interface).and_return(true)
+          Refinery::Plugins.registered.find_by_name("refinery_settings").hide_from_menu = true
         end
 
         it "does not show up in menu" do
@@ -83,10 +79,6 @@ module Refinery
           within('nav') do
             page.should_not have_content "Settings"
           end
-        end
-
-        it "should not be accessible" do
-          expect(:get => "/refinery/settings").not_to be_routable
         end
       end
 
