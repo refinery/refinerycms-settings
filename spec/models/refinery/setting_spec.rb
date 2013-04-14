@@ -9,6 +9,12 @@ module Refinery
     end
 
     context "set" do
+      it "should save and get @keram" do
+        ::Refinery::Setting.find_or_set(:twitter, '@keram')
+        setting = ::Refinery::Setting.last
+        setting.value.should eq('@keram')
+      end
+
       it "should create a setting that didn't exist" do
         ::Refinery::Setting.get(:creating_from_scratch, :scoping => 'rspec_testing').should eq(nil)
         ::Refinery::Setting.set(:creating_from_scratch, {:value => "Look, a value", :scoping => 'rspec_testing'}).should eq("Look, a value")
