@@ -1,9 +1,9 @@
 require "spec_helper"
 
 
-describe "routes for refinery settings", :focus do
+describe "routes for refinery settings" do
 
-  context "when interface config is disabled", :focus do
+  context "when interface config is disabled" do
     before do
       Refinery::Settings.stub(:enable_interface).and_return(false)
       Refinery::Plugins.registered.find_by_name("refinery_settings").hide_from_menu = true
