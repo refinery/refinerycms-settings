@@ -8,6 +8,13 @@ module Refinery
       ::Refinery::Setting.set(:rspec_testing_creating_from_scratch, nil)
     end
 
+    context "slug" do
+      it "should create correct slug" do
+        ::Refinery::Setting.set('test/something', {:value => "Look, a value"})
+        ::Refinery::Setting.last.to_param.should eq('test-something')
+      end
+    end
+
     context "set" do
       it "should save and get @keram" do
         ::Refinery::Setting.find_or_set(:twitter, '@keram')
