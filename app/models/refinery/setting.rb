@@ -3,7 +3,7 @@ require 'acts_as_indexed'
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
-    friendly_id :name
+    friendly_id :name, :use => :slugged
 
     FORM_VALUE_TYPES = [
       ['Multi-line', 'text_area'],

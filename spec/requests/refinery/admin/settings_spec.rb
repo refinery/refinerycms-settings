@@ -50,6 +50,26 @@ module Refinery
             page.should have_content("'Test Setting' was successfully added.")
             page.should have_content("Test Setting - true")
           end
+
+          it "adds setting with slug unfriendly name", :js => true do
+            visit refinery.admin_settings_path
+            click_link "Add new setting"
+
+            page.should have_selector('iframe#dialog_iframe')
+
+            page.within_frame('dialog_iframe') do
+              fill_in "Name", :with => "Test/Setting"
+              fill_in "Value", :with => "true"
+
+              click_button "Save"
+            end
+
+            page.should have_content("'Test/Setting' was successfully added.")
+            page.should have_content("Test/Setting - true")
+
+            visit refinery.edit_admin_setting_path(Refinery::Setting.last)
+            page.should_not have_content('NoMethodError in Refinery::Admin::BaseController#error_404')
+          end
         end
 
         context "pagination" do
