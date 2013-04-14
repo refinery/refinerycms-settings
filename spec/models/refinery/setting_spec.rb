@@ -8,6 +8,13 @@ module Refinery
       ::Refinery::Setting.set(:rspec_testing_creating_from_scratch, nil)
     end
 
+    context "slug" do
+      it "should create correct slug" do
+        ::Refinery::Setting.set('test/something', {:value => "Look, a value"})
+        ::Refinery::Setting.last.to_param.should eq('test-something')
+      end
+    end
+
     context "set" do
       it "should create a setting that didn't exist" do
         ::Refinery::Setting.get(:creating_from_scratch, :scoping => 'rspec_testing').should eq(nil)
