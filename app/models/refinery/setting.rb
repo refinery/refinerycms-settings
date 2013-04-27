@@ -145,7 +145,7 @@ module Refinery
     end
     
     def title
-      self[:title].present? ? self[:title] : auto_title
+      self[:title].presence || auto_title
     end
 
     # form_value is so that on the web interface we can display a sane value.
