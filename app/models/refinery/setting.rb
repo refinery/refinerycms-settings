@@ -1,5 +1,3 @@
-require 'acts_as_indexed'
-
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
@@ -13,9 +11,6 @@ module Refinery
     validates :name, :presence => true
 
     serialize :value # stores into YAML format
-
-    # Docs for acts_as_indexed http://github.com/dougal/acts_as_indexed
-    acts_as_indexed :fields => [:name]
 
     attr_accessible :name, :value, :destroyable,
                     :scoping, :restricted, :form_value_type
