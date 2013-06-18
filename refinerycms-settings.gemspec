@@ -3,7 +3,7 @@
 Gem::Specification.new do |s|
   s.platform          = Gem::Platform::RUBY
   s.name              = %q{refinerycms-settings}
-  s.version           = %q{2.0.2}
+  s.version           = %q{2.0.3}
   s.summary           = %q{Settings engine for Refinery CMS}
   s.description       = %q{Adds programmer creatable, user editable settings.}
   s.email             = %q{info@refinerycms.com}
@@ -16,6 +16,6 @@ Gem::Specification.new do |s|
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
-  s.add_dependency 'refinerycms-core', '~> 2.0.1'
+  s.add_dependency 'refinerycms-core', '~> 2.0.10'
   s.add_dependency 'acts_as_indexed',  '~> 0.7.7'
 end
