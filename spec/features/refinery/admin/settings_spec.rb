@@ -19,7 +19,7 @@ module Refinery
         end
 
         context "when no settings" do
-          before(:each) { Refinery::Setting.destroy_all }
+          before { Refinery::Setting.destroy_all }
 
           it "invites to create one" do
             visit refinery.admin_settings_path
@@ -41,10 +41,10 @@ module Refinery
             page.should have_selector('iframe#dialog_iframe')
 
             page.within_frame('dialog_iframe') do
-              fill_in "Name", :with => "test setting"
-              fill_in "Value", :with => "true"
+              fill_in "setting_name", :with => "test setting"
+              fill_in "setting_value", :with => "true"
 
-              click_button "Save"
+              click_button "submit_button"
             end
 
             page.should have_content("'Test Setting' was successfully added.")
@@ -58,10 +58,10 @@ module Refinery
             page.should have_selector('iframe#dialog_iframe')
 
             page.within_frame('dialog_iframe') do
-              fill_in "Name", :with => "Test/Setting"
-              fill_in "Value", :with => "true"
+              fill_in "setting_name", :with => "Test/Setting"
+              fill_in "setting_value", :with => "true"
 
-              click_button "Save"
+              click_button "submit_button"
             end
 
             page.should have_content("'Test/Setting' was successfully added.")
@@ -73,7 +73,7 @@ module Refinery
         end
 
         context "pagination" do
-          before(:each) do
+          before do
             (Refinery::Setting.per_page + 1).times do
               FactoryGirl.create(:setting)
             end

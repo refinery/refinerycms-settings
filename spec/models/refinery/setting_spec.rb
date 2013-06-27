@@ -3,7 +3,7 @@ require 'spec_helper'
 module Refinery
   describe Setting do
 
-    before(:each) do
+    before do
       ::Refinery::Setting.set(:creating_from_scratch, nil)
       ::Refinery::Setting.set(:rspec_testing_creating_from_scratch, nil)
     end
