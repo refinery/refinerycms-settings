@@ -1,3 +1,5 @@
+require 'acts_as_indexed'
+
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
@@ -25,7 +27,7 @@ module Refinery
     after_save do |setting|
       setting.class.rewrite_cache
     end
-    
+
     after_destroy do |setting|
       setting.class.rewrite_cache
     end
