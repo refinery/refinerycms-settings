@@ -67,3 +67,5 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'nokogiri', '~> 1.5.0'
