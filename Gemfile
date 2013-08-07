@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'refinerycms', :git => 'git://github.com/refinery/refinerycms.git'
+gem 'refinerycms', '~> 2.1.0'
 gem 'refinerycms-testing', '~> 2.1.0', :group => :test
 gem 'refinerycms-acts-as-indexed', '~> 1.0.0'
 
