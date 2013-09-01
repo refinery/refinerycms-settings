@@ -25,6 +25,10 @@ end
 
 gem 'jruby-openssl', :platform => :jruby
 
+group :test do
+  gem 'poltergeist'
+end
+
 # Refinery/rails should pull in the proper versions of these
 group :assets do
   gem 'sass-rails'
