@@ -1,7 +1,7 @@
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
-    friendly_id :name, :use => :slugged
+    friendly_id :name, use: :slugged
 
     FORM_VALUE_TYPES = [
       ['Multi-line', 'text_area'],
@@ -34,7 +34,7 @@ module Refinery
       end
 
       def ensure_cache_exists!
-        if (result = Rails.cache.read(cache_key, :multithread => true)).nil?
+        if (result = Rails.cache.read(cache_key, multithread: true)).nil?
           result = rewrite_cache
         end
 
@@ -69,13 +69,13 @@ module Refinery
 
       def rewrite_cache
         # delete cache
-        Rails.cache.delete(cache_key, :multithread => true)
+        Rails.cache.delete(cache_key, multithread: true)
 
         # generate new cache
         result = (to_cache(all) if (table_exists? rescue false))
 
         # write cache
-        Rails.cache.write(cache_key, result, :multithread => true)
+        Rails.cache.write(cache_key, result, multithread: true)
 
         # return cache, or lack thereof.
         result ||= []
@@ -89,16 +89,16 @@ module Refinery
       def find_or_set(name, the_value, options={})
         # Merge default options with supplied options.
         options = {
-          :scoping => nil,
-          :restricted => false,
-          :form_value_type => 'text_area'
+          scoping: nil,
+          restricted: false,
+          form_value_type: 'text_area'
         }.merge(options)
 
         # try to find the setting first
-        value = get(name, :scoping => options[:scoping])
+        value = get(name, scoping: options[:scoping])
 
         # if the setting's value is nil, store a new one using the existing functionality.
-        value = set(name, options.merge({:value => the_value})) if value.nil?
+        value = set(name, options.merge(value: the_value)) if value.nil?
 
         # Return what we found.
         value
@@ -108,7 +108,7 @@ module Refinery
 
       # Retrieve the current value for the setting whose name is supplied.
       def get(name, options = {})
-        options = {:scoping => nil}.update(options)
+        options = {scoping: nil}.update(options)
         cache_read(name, options[:scoping])
       end
 
@@ -118,7 +118,7 @@ module Refinery
         return (value.is_a?(Hash) ? value[:value] : value) unless (table_exists? rescue false)
 
         scoping = (value[:scoping] if value.is_a?(Hash) and value.has_key?(:scoping))
-        setting = find_or_initialize_by_name_and_scoping(name.to_s, scoping)
+        setting = where(name: name.to_s, scoping: scoping).first_or_initialize
 
         # you could also pass in {:value => 'something', :scoping => 'somewhere'}
         unless value.is_a?(Hash) and value.has_key?(:value)
@@ -162,14 +162,12 @@ module Refinery
 
     def value=(new_value)
       # must convert "1" to true and "0" to false when supplied using 'check_box', unfortunately.
-      if ["1", "0"].include?(new_value) and form_value_type == 'check_box'
-        new_value = new_value == "1" ? true : false
+      if %w[1 0].include?(new_value) && form_value_type == 'check_box'
+        new_value = new_value == "1"
       end
 
       # must convert to string if true or false supplied otherwise it becomes 0 or 1, unfortunately.
-      if [true, false].include?(new_value)
-        new_value = new_value.to_s
-      end
+      new_value = new_value.to_s if [true, false].include?(new_value)
 
       super
     end
