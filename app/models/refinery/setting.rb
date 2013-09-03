@@ -19,70 +19,10 @@ module Refinery
       setting.restricted = false if setting.restricted.nil?
     end
 
-    after_save do |setting|
-      setting.class.rewrite_cache
-    end
-
-    after_destroy do |setting|
-      setting.class.rewrite_cache
-    end
-
     class << self
       # Number of settings to show per page when using will_paginate
       def per_page
         12
-      end
-
-      def ensure_cache_exists!
-        if (result = Rails.cache.read(cache_key, multithread: true)).nil?
-          result = rewrite_cache
-        end
-
-        result
-      end
-      protected :ensure_cache_exists!
-
-      def cache_read(name = nil, scoping = nil)
-        result = ensure_cache_exists!
-
-        if name.present?
-          scoping = scoping.to_s if scoping.is_a?(Symbol)
-          result = result.detect do |rs|
-            rs[:name] == name.to_s.downcase.to_sym and rs[:scoping] == scoping
-          end
-          result = result[:value] if !result.nil? and result.keys.include?(:value)
-        end
-
-        result
-      end
-
-      def to_cache(settings)
-        settings.collect do |rs|
-          {
-            :name => rs.name.to_s.downcase.to_sym,
-            :value => rs.value,
-            :scoping => rs.scoping,
-            :destroyable => rs.destroyable
-          }
-        end
-      end
-
-      def rewrite_cache
-        # delete cache
-        Rails.cache.delete(cache_key, multithread: true)
-
-        # generate new cache
-        result = (to_cache(all) if (table_exists? rescue false))
-
-        # write cache
-        Rails.cache.write(cache_key, result, multithread: true)
-
-        # return cache, or lack thereof.
-        result ||= []
-      end
-
-      def cache_key
-        [Refinery::Core.base_cache_key, 'settings_cache'].join('_')
       end
 
       # find_or_set offers a convenient way to
@@ -109,7 +49,8 @@ module Refinery
       # Retrieve the current value for the setting whose name is supplied.
       def get(name, options = {})
         options = {scoping: nil}.update(options)
-        cache_read(name, options[:scoping])
+        where(name: name, scoping: options[:scoping])
+          .select(:value).map(&:value).first
       end
 
       alias :[] :get
