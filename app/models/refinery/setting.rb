@@ -1,7 +1,7 @@
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
-    friendly_id :name, use: :slugged
+    friendly_id :name, use: [:slugged, :finders]
 
     FORM_VALUE_TYPES = [
       ['Multi-line', 'text_area'],

@@ -13,8 +13,7 @@ if File.exists?(APP_RAKEFILE)
 end
 
 require "refinerycms-testing"
-Refinery::Testing::Railtie.load_tasks
-Refinery::Testing::Railtie.load_dummy_tasks(ENGINE_PATH)
+Refinery::Testing::Railtie.load_dummy_tasks File.dirname(__FILE__)
 
 load File.expand_path('../tasks/rspec.rake', __FILE__)
 
