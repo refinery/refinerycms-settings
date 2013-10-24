@@ -2,16 +2,18 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'refinerycms', github: 'refinery/refinerycms', branch: 'rails4'
+gem 'json'
+gem 'protected_attributes'
+gem 'refinerycms', github: 'refinery/refinerycms', branch: 'master'
 gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
 
 gem 'friendly_id-globalize', github: 'norman/friendly_id-globalize', branch: 'master'
-gem 'globalize3', github: 'svenfuchs/globalize3', branch: 'rails4'
+gem 'globalize'
 gem 'paper_trail', github: 'airblade/paper_trail', branch: 'master'
 gem 'awesome_nested_set', github: 'collectiveidea/awesome_nested_set', branch: 'master'
 
 group :test do
-  gem 'refinerycms-testing', github: 'refinery/refinerycms', branch: 'rails4'
+  gem 'refinerycms-testing', github: 'refinery/refinerycms', branch: 'master'
   gem 'poltergeist'
   gem 'pry'
   gem 'pry-nav'
