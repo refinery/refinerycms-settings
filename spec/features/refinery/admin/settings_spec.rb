@@ -71,6 +71,29 @@ module Refinery
             page.should_not have_content('NoMethodError in Refinery::Admin::BaseController#error_404')
           end
         end
+        
+        context "edit/update" do
+          before(:each) {::Refinery::Setting.set(:rspec_testing_edit_and_update, 1)}
+          
+          it "modifies setting", :js => true do
+            visit refinery.admin_settings_path
+            find("a[href*='/refinery/settings/rspec_testing_edit_and_update/edit']").click
+            
+            page.should have_selector('iframe#dialog_iframe')
+            page.within_frame('dialog_iframe') do
+              
+              find_field('Title').value.should eql("Rspec Testing Edit And Update")
+              
+              fill_in "Title", :with => "Edit and Update Title"
+              fill_in "Value", :with => "2"
+  
+              click_button "Save"
+            end
+            
+            page.should have_content("'Edit and Update Title' was successfully updated.")
+            page.should have_content("Edit and Update Title - 2")
+          end
+        end
 
         context "pagination" do
           before do

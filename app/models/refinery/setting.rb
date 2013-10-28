@@ -12,7 +12,7 @@ module Refinery
 
     serialize :value # stores into YAML format
 
-    attr_accessible :name, :value, :destroyable,
+    attr_accessible :title, :name, :value, :destroyable,
                     :scoping, :restricted, :form_value_type
 
     before_save do |setting|
@@ -79,13 +79,9 @@ module Refinery
         setting.value
       end
     end
-
-    # prettier version of the name.
-    # site_name becomes Site Name
+    
     def title
-      result = name.to_s.titleize
-      result << " (#{scoping.titleize})" if scoping.is_a?(String)
-      result
+      self[:title].presence || auto_title
     end
 
     # form_value is so that on the web interface we can display a sane value.
@@ -138,6 +134,14 @@ module Refinery
       end
 
       current_value
+    end
+    
+    # prettier version of the name.
+    # site_name becomes Site Name
+    def auto_title
+      result = name.to_s.titleize
+      result << " (#{scoping.titleize})" if scoping.is_a?(String)
+      result
     end
 
   end
