@@ -16,7 +16,14 @@ Generate and install the necessary migrations:
 
     rails generate refinery:settings
     rake db:migrate
-    
+
+## Upgrading from 2.0.x
+When you upgrade from version 2.0.x make sure you run:
+
+    rails generate refinery:settings
+    rake db:migrate
+
+It will copy the new migration and migrate the database.
 
 ## How do I Make my Own Settings?
 
