@@ -41,32 +41,35 @@ module Refinery
         new_set.should eq("newer replaced value")
       end
 
+      let(:creating_from_scratch) {
+        ::Refinery::Setting.find_by(name: 'creating_from_scratch', scoping: 'rspec_testing')
+      }
       it "should default to form_value_type text_area" do
         set = ::Refinery::Setting.set(:creating_from_scratch, {:value => "a value", :scoping => 'rspec_testing'})
-        ::Refinery::Setting.find_by_name(:creating_from_scratch.to_s, :conditions => {:scoping => 'rspec_testing'}).form_value_type.should eq("text_area")
+        creating_from_scratch.form_value_type.should eq("text_area")
       end
 
       it "should fix true as a value to 'true' (string)" do
         set = ::Refinery::Setting.set(:creating_from_scratch, {:value => true, :scoping => 'rspec_testing'})
-        ::Refinery::Setting.find_by_name(:creating_from_scratch.to_s, :conditions => {:scoping => 'rspec_testing'})[:value].should eq('true')
+        creating_from_scratch[:value].should eq('true')
         set.should eq(true)
       end
 
       it "should fix false as a value to 'false' (string)" do
         set = ::Refinery::Setting.set(:creating_from_scratch, {:value => false, :scoping => 'rspec_testing'})
-        ::Refinery::Setting.find_by_name(:creating_from_scratch.to_s, :conditions => {:scoping => 'rspec_testing'})[:value].should eq('false')
+        creating_from_scratch[:value].should eq('false')
         set.should eq(false)
       end
 
       it "should fix '1' as a value with a check_box form_value_type to true" do
         set = ::Refinery::Setting.set(:creating_from_scratch, {:value => "1", :scoping => 'rspec_testing', :form_value_type => 'check_box'})
-        ::Refinery::Setting.find_by_name(:creating_from_scratch.to_s, :conditions => {:scoping => 'rspec_testing'})[:value].should eq('true')
+        creating_from_scratch[:value].should eq('true')
         set.should eq(true)
       end
 
       it "should fix '0' as a value with a check_box form_value_type to false" do
         set = ::Refinery::Setting.set(:creating_from_scratch, {:value => "0", :scoping => 'rspec_testing', :form_value_type => 'check_box'})
-        ::Refinery::Setting.find_by_name(:creating_from_scratch.to_s, :conditions => {:scoping => 'rspec_testing'})[:value].should eq('false')
+        creating_from_scratch[:value].should eq('false')
         set.should eq(false)
       end
     end

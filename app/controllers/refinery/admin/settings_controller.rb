@@ -1,4 +1,4 @@
-module ::Refinery
+module Refinery
   module Admin
     class SettingsController < ::Refinery::AdminController
 
@@ -17,7 +17,7 @@ module ::Refinery
       end
 
       def edit
-        @setting = ::Refinery::Setting.find(params[:id])
+        @setting = ::Refinery::Setting.friendly.find(params[:id])
 
         render :layout => false if request.xhr?
       end
