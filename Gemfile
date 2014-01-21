@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'json'
-gem 'protected_attributes'
 gem 'refinerycms', github: 'refinery/refinerycms', branch: 'master'
 gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
 
@@ -11,6 +10,7 @@ gem 'friendly_id-globalize', github: 'norman/friendly_id-globalize', branch: 'ma
 gem 'globalize'
 gem 'paper_trail', github: 'airblade/paper_trail', branch: 'master'
 gem 'awesome_nested_set', github: 'collectiveidea/awesome_nested_set', branch: 'master'
+gem "mime-types", "~> 1.25"
 
 group :test do
   gem 'refinerycms-testing', github: 'refinery/refinerycms', branch: 'master'
