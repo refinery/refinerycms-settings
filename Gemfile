@@ -2,18 +2,13 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'json'
-gem 'refinerycms', github: 'refinery/refinerycms', branch: 'master'
-gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n', branch: 'master'
-
-gem 'friendly_id-globalize', github: 'norman/friendly_id-globalize', branch: 'master'
-gem 'globalize'
-gem 'paper_trail', github: 'airblade/paper_trail', branch: 'master'
-gem 'awesome_nested_set', github: 'collectiveidea/awesome_nested_set', branch: 'master'
+gem 'refinerycms', github: 'refinery/refinerycms'
+gem 'refinerycms-i18n', github: 'refinery/refinerycms-i18n'
+gem 'refinerycms-acts-as-indexed', github: 'refinery/refinerycms-acts-as-indexed'
 gem "mime-types", "~> 1.25"
 
 group :test do
-  gem 'refinerycms-testing', github: 'refinery/refinerycms', branch: 'master'
+  gem 'refinerycms-testing', github: 'refinery/refinerycms'
   gem 'poltergeist'
   gem 'pry'
   gem 'pry-nav'

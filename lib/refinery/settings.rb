@@ -1,4 +1,3 @@
-require 'json'
 require 'refinerycms-core'
 
 module Refinery

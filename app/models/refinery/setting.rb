@@ -1,3 +1,5 @@
+require 'friendly_id'
+
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
@@ -76,7 +78,7 @@ module Refinery
         setting.value
       end
     end
-    
+
     def title
       self[:title].presence || auto_title
     end
@@ -132,7 +134,7 @@ module Refinery
 
       current_value
     end
-    
+
     # prettier version of the name.
     # site_name becomes Site Name
     def auto_title
