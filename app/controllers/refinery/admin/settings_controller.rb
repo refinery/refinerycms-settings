@@ -50,6 +50,12 @@ module ::Refinery
       def sanitise_params
         params.delete(:scoping)
       end
+
+      def setting_params
+        params.require(:setting).permit(:title, :name, :value, :destroyable,
+                                          :scoping, :restricted, :form_value_type)
+      end
+
     end
   end
 end

@@ -12,9 +12,6 @@ module Refinery
 
     serialize :value # stores into YAML format
 
-    attr_accessible :title, :name, :value, :destroyable,
-                    :scoping, :restricted, :form_value_type
-
     before_save do |setting|
       setting.restricted = false if setting.restricted.nil?
     end
