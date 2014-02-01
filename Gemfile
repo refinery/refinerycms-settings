@@ -10,8 +10,6 @@ gem "mime-types", "~> 1.25"
 group :test do
   gem 'refinerycms-testing', github: 'refinery/refinerycms'
   gem 'poltergeist'
-  gem 'pry'
-  gem 'pry-nav'
   gem 'capybara-email', '~> 2.1.2'
 end
 
