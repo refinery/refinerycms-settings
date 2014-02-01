@@ -3,7 +3,13 @@ require 'friendly_id'
 module Refinery
   class Setting < Refinery::Core::BaseModel
     extend FriendlyId
+
     friendly_id :name, use: [:slugged, :finders]
+
+    # If name changes tell friendly_id to regenerate slug when saving record
+    def should_generate_new_friendly_id?
+      name_changed?
+    end
 
     FORM_VALUE_TYPES = [
       ['Multi-line', 'text_area'],
