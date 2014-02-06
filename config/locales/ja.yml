@@ -19,7 +19,6 @@ ja:
           yes_make_this_setting_restricted: "管理人のみ閲覧可能にする。"
           help:
             restricted: 管理人のみが変更出来るようにします。
-            activity_show_limit: ダッシュボードで表示されるアイテムの数を制限します。
   activerecord:
     models:
       refinery/setting: 設定

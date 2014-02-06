@@ -12,7 +12,7 @@ de:
           new: Neue Einstellung erstellen
         records:
           empty_set: Es gibt noch keine Einstellungen.
-          create_first: Klicken Sie auf '%{link}', um Ihre erste Einstellung anzulegen.
+          create_first: "Klicken Sie auf '%{link}', um Ihre erste Einstellung anzulegen."
         form:
           enabled: "Ja, die Einstellung aktivieren."
           restart_may_be_in_order_html: "<strong>Bitte beachten Sie</strong>, dass Sie Ihre Website eventuell neu starten müssen, damit die Einstellungen angewendet werden."
@@ -23,8 +23,7 @@ de:
     models:
       refinery/setting: Einstellungen
     attributes:
-      refinery:
-        setting:
-          name: Name
-          value: Wert
-          restricted: Eingeschränkt
+      refinery/setting:
+        name: Name
+        value: Wert
+        restricted: Eingeschränkt
