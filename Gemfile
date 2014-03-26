@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'refinerycms', '~> 2.1.1'
-gem 'refinerycms-testing', '~> 2.1.1', :group => :test
+gem 'refinerycms', '~> 2.1.2'
+gem 'refinerycms-testing', '~> 2.1.2', :group => :test
 gem 'refinerycms-acts-as-indexed', '~> 1.0.0'
 
 # Database Configuration
