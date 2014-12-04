@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.description       = %q{Adds programmer creatable, user editable settings.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
-  s.rubyforge_project = %q{refinerycms}
   s.authors           = ['Philip Arndt', 'Uģis Ozols']
   s.license           = %q{MIT}
   s.require_paths     = %w(lib)
