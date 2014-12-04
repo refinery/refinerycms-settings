@@ -6,8 +6,7 @@ module ::Refinery
 
       crudify :'refinery/setting',
               :order => "name ASC",
-              :redirect_to_url => :redirect_to_where?,
-              :xhr_paging => true
+              :redirect_to_url => :redirect_to_where?
 
       before_filter :sanitise_params, :only => [:create, :update]
 
