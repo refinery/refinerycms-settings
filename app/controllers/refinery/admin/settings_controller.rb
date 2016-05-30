@@ -8,7 +8,7 @@ module ::Refinery
               :order => "name ASC",
               :redirect_to_url => :redirect_to_where?
 
-      before_filter :sanitise_params, :only => [:create, :update]
+      before_action :sanitise_params, :only => [:create, :update]
 
       def new
         form_value_type = ((current_refinery_user.has_role?(:superuser) && params[:form_value_type]) || 'text_area')
