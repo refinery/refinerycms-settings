@@ -1,6 +1,6 @@
-# Settings
+# Refinery CMS Settings
 
-![Refinery Settings](http://refinerycms.com/system/images/0000/0666/settings.png)
+[![Build Status](https://travis-ci.org/refinery/refinerycms-settings.svg?branch=master)](https://travis-ci.org/refinery/refinerycms-settings)
 
 ## About
 
