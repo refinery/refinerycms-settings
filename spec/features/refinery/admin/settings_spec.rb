@@ -3,7 +3,7 @@ require "spec_helper"
 module Refinery
   module Admin
     describe "Settings", :type => :feature do
-      refinery_login_with :refinery_user
+      refinery_login
 
       context "when interface config is enabled" do
         before do
@@ -36,7 +36,7 @@ module Refinery
         context "new/create" do
           it "adds setting", :js => true do
             visit refinery.admin_settings_path
-            click_link "Add new setting"
+            find("a", text: "Add new setting").trigger("click")
 
             expect(page).to have_selector('iframe#dialog_iframe')
 
@@ -53,7 +53,7 @@ module Refinery
 
           it "adds setting with slug unfriendly name", :js => true do
             visit refinery.admin_settings_path
-            click_link "Add new setting"
+            find("a", text: "Add new setting").trigger("click")
 
             expect(page).to have_selector('iframe#dialog_iframe')
 
