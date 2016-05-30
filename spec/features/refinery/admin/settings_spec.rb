@@ -36,7 +36,7 @@ module Refinery
         context "new/create" do
           it "adds setting", :js => true do
             visit refinery.admin_settings_path
-            click_link "Add new setting"
+            find("a", text: "Add new setting").trigger("click")
 
             expect(page).to have_selector('iframe#dialog_iframe')
 
@@ -53,7 +53,7 @@ module Refinery
 
           it "adds setting with slug unfriendly name", :js => true do
             visit refinery.admin_settings_path
-            click_link "Add new setting"
+            find("a", text: "Add new setting").trigger("click")
 
             expect(page).to have_selector('iframe#dialog_iframe')
 
