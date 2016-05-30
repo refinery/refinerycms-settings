@@ -3,7 +3,7 @@ require "spec_helper"
 module Refinery
   module Admin
     describe "Settings", :type => :feature do
-      refinery_login_with :refinery_user
+      refinery_login
 
       context "when interface config is enabled" do
         before do
