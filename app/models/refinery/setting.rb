@@ -11,11 +11,6 @@ module Refinery
       name_changed?
     end
 
-    FORM_VALUE_TYPES = [
-      ['Multi-line', 'text_area'],
-      ['Checkbox', 'check_box']
-    ]
-
     validates :name, :presence => true
 
     serialize :value # stores into YAML format
@@ -28,6 +23,13 @@ module Refinery
       # Number of settings to show per page when using will_paginate
       def per_page
         12
+      end
+
+      def form_value_types
+        [
+          ['Multi-line', 'text_area'],
+          ['Checkbox', 'check_box']
+        ]
       end
 
       # find_or_set offers a convenient way to
