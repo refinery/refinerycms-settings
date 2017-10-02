@@ -37,7 +37,7 @@ group :assets do
 end
 
 group :development do
-  gem 'quiet_assets'
+  gem 'quiet_assets', '~> 1.1.1'
 end
 
 group :test do
