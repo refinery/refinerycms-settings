@@ -47,7 +47,6 @@ module Refinery
               click_button "submit_button"
             end
             expect(page).not_to have_css("#dialog_iframe")
-            expect(page).to have_content("'Test Setting' was successfully added.")
             expect(page).to have_content("Test Setting - true")
           end
 
@@ -64,7 +63,6 @@ module Refinery
               click_button "submit_button"
             end
 
-            expect(page).to have_content("'Test/Setting' was successfully added.")
             expect(page).to have_content("Test/Setting - true")
 
             visit refinery.edit_admin_setting_path(Refinery::Setting.last)
@@ -90,7 +88,6 @@ module Refinery
               click_button "Save"
             end
 
-            expect(page).to have_content("'Edit and Update Title' was successfully updated.")
             expect(page).to have_content("Edit and Update Title - 2")
           end
         end
