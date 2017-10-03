@@ -8,6 +8,7 @@ en:
       settings:
         delete: Remove this setting forever
         edit: Edit this setting
+        restricted: This setting is only visible and editable by users who are superusers (like you).
         actions:
           new: Add new setting
         records:
