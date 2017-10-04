@@ -1,4 +1,4 @@
-class CreateRefinerycmsSettingsSchema < ActiveRecord::Migration
+class CreateRefinerycmsSettingsSchema < ActiveRecord::Migration[4.2]
   def change
     create_table :refinery_settings do |t|
       t.string    :name

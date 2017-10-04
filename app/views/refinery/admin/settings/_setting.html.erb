@@ -1,23 +1,22 @@
+<% # setup params for various action links
+  edit_url ||= refinery.edit_admin_setting_path(setting, dialog: true, width: 725, height: 525)
+  delete_url ||= refinery.admin_setting_path(setting)
+  delete_options ||= {
+    class: "cancel confirm-delete",
+    data: {
+      confirm: t('message', scope: 'refinery.admin.delete', title: setting.title)
+    }
+  }
+%>
+
 <li class='clearfix record <%= cycle("on", "on-hover") %>'>
   <span class='title'>
     <%= t(setting.name, :scope => 'refinery.admin.settings.form.title', :default => setting.title) %>
     <span class="preview">- <%= truncate(setting.value.to_s, :length => 40) %></span>
   </span>
   <span class='actions'>
-    <%= link_to refinery_icon_tag('application_edit.png'),
-                refinery.edit_admin_setting_path(setting, :dialog => true, :width => 725, :height => 525),
-                :title => t('edit', :scope => 'refinery.admin.settings') %>
-    <%= link_to refinery_icon_tag('delete.png'),
-                refinery.admin_setting_path(setting),
-                :class => 'cancel confirm-delete',
-                :title => t('delete', :scope => 'refinery.admin.settings'),
-                :data => { :confirm => t('message', :scope => 'refinery.admin.delete', :title => setting.title) },
-                :method => :delete if setting.destroyable %>
-
-    <% unless (help = t(setting.name, :scope => 'refinery.admin.settings.form.help', :default => '')).blank? %>
-      <%= link_to refinery_icon_tag('information.png'), '#',
-                  :tooltip => help,
-                  :class => 'information suppress' %>
-    <% end %>
+    <%= action_icon(:info, '#', t('restricted', scope: 'refinery.admin.settings')) if setting.restricted %>
+    <%= action_icon(:edit, edit_url, t('edit', scope: 'refinery.admin.settings')) %>
+    <%= action_icon(:delete, delete_url, t('delete', scope: 'refinery.admin.settings'), delete_options) if setting.destroyable %>
   </span>
 </li>
