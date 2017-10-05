@@ -14,7 +14,7 @@
   <% if current_refinery_user.has_role?(:superuser) && @setting.new_record? %>
     <div class='field'>
       <%= f.label :form_value_type %>
-      <%= f.select :form_value_type, ::Refinery::Setting::FORM_VALUE_TYPES -%>
+      <%= f.select :form_value_type, ::Refinery::Setting::form_value_types -%>
     </div>
   <% end %>
   <% unless action_name =~ /(new)|(create)/ or (help = t(@setting.name, :scope => 'refinery.admin.settings.form.help', :default => '')).blank? or @setting.form_value_type == 'check_box'  %>
