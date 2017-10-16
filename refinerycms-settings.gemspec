@@ -17,4 +17,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'refinerycms-core',     ['~> 4.0', '>= 4.0.0']
   s.add_dependency    'friendly_id',          ['>= 5.1.0', '< 5.3']
+
+  s.cert_chain  = [File.expand_path("../certs/parndt.pem", __FILE__)]
+  if $0 =~ /gem\z/ && ARGV.include?("build") && ARGV.include?(__FILE__)
+    s.signing_key = File.expand_path("~/.ssh/gem-private_key.pem")
+  end
 end
