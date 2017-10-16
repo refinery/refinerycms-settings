@@ -30,6 +30,10 @@ module Refinery
         12
       end
 
+      def form_value_types
+        FORM_VALUE_TYPES
+      end
+
       # find_or_set offers a convenient way to
       def find_or_set(name, the_value, options={})
         # Merge default options with supplied options.
