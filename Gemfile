@@ -24,7 +24,7 @@ end
 
 if !ENV["TRAVIS"] || ENV["DB"] == "postgresql"
   gem "activerecord-jdbcpostgresql-adapter", :platform => :jruby
-  gem "pg", :platform => :ruby
+  gem 'pg', '~> 0.21', platform: :ruby
 end
 
 gem "jruby-openssl", :platform => :jruby
