@@ -121,7 +121,7 @@ module Refinery
     describe "#should_generate_new_friendly_id?" do
       context "when name changes" do
         it "regenerates slug upon save" do
-          setting = FactoryGirl.create(:setting, :name => "Test Name")
+          setting = FactoryBot.create(:setting, :name => "Test Name")
 
           setting.name = "Test Name 2"
           setting.save!

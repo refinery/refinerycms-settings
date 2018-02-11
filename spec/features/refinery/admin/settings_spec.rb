@@ -95,7 +95,7 @@ module Refinery
         context "pagination" do
           before do
             (Refinery::Setting.per_page + 1).times do
-              FactoryGirl.create(:setting)
+              FactoryBot.create(:setting)
             end
           end
 
