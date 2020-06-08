@@ -42,7 +42,7 @@ end
 
 group :test do
   gem "launchy"
-  gem 'capybara-email', '~> 2.4.0'
+  gem 'capybara-email', '~> 3.0.2'
   gem 'poltergeist'
 end
 
