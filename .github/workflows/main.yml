@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        database: [ mysql, postgresql ]
+        ruby: [ 2.7, 2.6 ]
+      fail-fast: false
+      max-parallel: 20
+    runs-on: ubuntu-latest
+
+    env:
+      CI: true
+      DB: ${{ matrix.database }}
+      MYSQL_PASSWORD: root
+      PGHOST: localhost
+      PGPASSWORD: runner
+      PGUSER: runner
+      RAILS_ENV: test
+      RETRY_COUNT: 3
+
+    name: ${{ matrix.extension }} ${{ matrix.ruby }} ${{ matrix.database }}
+    steps:
+      - run: sudo apt-get update && sudo apt-get install libsqlite3-dev -y
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: "Set up MySQL using VM's server"
+        if: ${{ env.DB == 'mysql' }}
+        run: |
+          sudo apt-get install libmysqlclient-dev -y
+          sudo systemctl start mysql.service
+
+      - name: "Set up PostgreSQL using VM's server"
+        if: ${{ env.DB == 'postgresql' }}
+        run: |
+          sudo apt-get install libpq-dev -y
+          sudo systemctl start postgresql.service
+          sudo -u postgres psql -c "CREATE USER runner WITH SUPERUSER PASSWORD 'runner'"
+
+      - run: bin/rake refinery:testing:dummy_app
+      - run: bin/rspec spec
