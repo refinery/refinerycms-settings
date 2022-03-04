@@ -1,16 +1,17 @@
-require "spec_helper"
+require 'spec_helper'
 
-
-describe "routes for refinery settings", :type => :routing do
-
-  context "when interface config is disabled" do
-    before do
+describe "Refinery::Settings", type: :routing do
+ context 'when interface disabled' do
+    it "is not routable" do
       allow(Refinery::Settings).to receive(:enable_interface).and_return(false)
-      Refinery::Plugins.registered.find_by_name("refinery_settings").hide_from_menu = true
+      expect(get: "/refinery/settings").to not_be_routable
     end
+ end
 
-    it "should not be accesible" do
-      expect(:get => "/refinery/settings").to_not be_routable
-    end
-  end
+ context 'when interface enabled' do
+   it "routes to the settings index" do
+     allow(Refinery::Settings).to receive(:enable_interface).and_return(true)
+     expect(get: "/refinery/settings").to be_routable
+   end
+ end
 end

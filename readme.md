@@ -4,11 +4,10 @@
 
 ## About
 
-Refinery Settings was extracted from Refinery CMS just before 2.0.0 was released
-and can now be used separately.
+Refinery Settings is compatible with Refinery CMS 4.1.0 and Rails 6
 
 ## Installation
-Add the gem to you Gemfile:
+Add the gem to your Gemfile:
 
     gem 'refinerycms-settings'
 
@@ -17,13 +16,13 @@ Generate and install the necessary migrations:
     rails generate refinery:settings
     rake db:migrate
 
-## Upgrading from 2.0.x
-When you upgrade from version 2.0.x make sure you run:
+## Upgrading
+When you upgrade run:
 
     rails generate refinery:settings
     rake db:migrate
 
-It will copy the new migration and migrate the database.
+If there are new migrations for Settings it will copy them to your app and migrate the database.
 
 ## How do I Make my Own Settings?
 
