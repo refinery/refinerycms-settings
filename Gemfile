@@ -22,9 +22,12 @@ if !ENV["TRAVIS"] || ENV["DB"] == "mysql"
   gem "mysql2", :platform => :ruby
 end
 
-if !ENV["TRAVIS"] || ENV["DB"] == "postgresql"
-  gem "activerecord-jdbcpostgresql-adapter", :platform => :jruby
-  gem 'pg', '~> 0.21', platform: :ruby
+
+if !ENV['CI'] || ENV['DB'] == 'postgresql'
+  group :postgres, :postgresql do
+    gem 'activerecord-jdbcpostgresql-adapter', '>= 1.3.0.rc1', platform: :jruby
+    gem 'pg', '~> 1.1', platform: :ruby
+  end
 end
 
 gem "jruby-openssl", :platform => :jruby
